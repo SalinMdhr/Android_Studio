@@ -55,9 +55,10 @@ public class MyDbAdapter {
         SQLiteDatabase db = myHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.NAME, newName);
+        String condition = myDbHelper.NAME + "= ?";
         String[] whereArgs = {oldName};
 
-        return db.update(myDbHelper.TABLE_NAME, contentValues, myDbHelper.NAME + "= ?", whereArgs);
+        return db.update(myDbHelper.TABLE_NAME, contentValues, condition, whereArgs);
     }
 
     static class myDbHelper extends SQLiteOpenHelper {
